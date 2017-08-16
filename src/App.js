@@ -73,6 +73,9 @@ const AppTab = TabNavigator({
 // 所有路由页面
 import About from './page/about/About';
 import Gene from './page/gene/Gene';
+import Picker from './page/picker/Picker';
+
+
 import Test from './test/AppTest';
 
 // 路由配置
@@ -80,6 +83,7 @@ export default StackNavigator({
     AppTab : { screen: AppTab },
     About : { screen: About },
     Gene: { screen: Gene },
+    Picker: { screen: Picker },
 
     Test : { screen: Test }
 });

@@ -9,13 +9,16 @@
   "dependencies": {
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.3",
+    "react-native-picker": "4.0.18",
+    "react-native-storage": "^0.2.2",
+    "react-native-swiper": "^1.5.10",
     "react-navigation": "^1.0.0-beta.11"
   },
   "devDependencies": {
-    "babel-jest": "20.0.3",
-    "babel-preset-react-native": "2.1.0",
-    "jest": "20.0.4",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "babel-jest": "19.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "19.0.2",
+    "react-test-renderer": "16.0.0-alpha.6"
   },
   "jest": {
     "preset": "react-native"

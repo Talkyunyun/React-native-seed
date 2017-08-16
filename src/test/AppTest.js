@@ -12,6 +12,8 @@ import {
 
 import TestHeader from './TestHeader';
 
+import StorageTest from './StorageTest';
+
 export default class AppTest extends React.Component {
     static navigationOptions = {
         headerTitle : null
@@ -24,7 +26,9 @@ export default class AppTest extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <TestHeader />
+                {/*<TestHeader />*/}
+
+                <StorageTest />
             </View>
         );
     }

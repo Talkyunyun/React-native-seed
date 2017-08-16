@@ -19,8 +19,24 @@ react-native run-android
 react-navigation
 npm install react-navigation --save
 
+# 存储组件
+react-native-storage
+npm install react-native-storage --save
+
+# 选择器组件[日期和地区]
+react-native-picker
+npm install react-native-picker --save
+
+
+# 幻灯片组件
+react-native-swiper
+npm install react-native-swiper --save
 ```
 
 
 ##### 常见问题
 1、如果遇到初始化项目无法运行，多数react和react-native版本问题造成的。
+```
+"react": "16.0.0-alpha.6",
+"react-native": "0.44.3",
+```
