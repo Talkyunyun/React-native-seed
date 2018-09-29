@@ -8,7 +8,10 @@
  */
 
 import { AppRegistry } from 'react-native';
-import Root from './src/container/Default';
+// import Root from './src/container/Default';
+import Root from './src/test/HeaderTest';
+
+
 import {name as appName} from './app.json';
 
 // 全局关闭警告弹窗提示

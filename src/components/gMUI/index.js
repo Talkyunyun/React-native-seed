@@ -1,5 +1,9 @@
 /**
  * gMUI组件
+ * 依赖组件：
+ * 1、react-native-message-bar
+ * 2、react-native-vector-icons
+ * 3、react-native-router-flux
  *
  * @author  : Gene Yang <talkyunyun@126.com>
  * @date    : 2018/09/29

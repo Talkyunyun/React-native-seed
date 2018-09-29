@@ -9,54 +9,94 @@
 
 import React, { Component } from 'react';
 import {
-    View, Text, Image, StyleSheet, StatusBar, TouchableOpacity
+    View, Text, StyleSheet, StatusBar, TouchableOpacity, ActivityIndicator
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { GlobalStyle } from '../../../config/index';
 
 class Header extends Component {
-    static defaultProps = {
-        rightText: {},
-        rightClick: () => {
-        },
-        right: {},
-    };
 
-    _renderLeftEvent() {
-        let {leftOnPress} = this.props;
-        if (typeof leftOnPress === 'undefined') {
+    /** 处理左边菜单点击事件 */
+    _onLeftEvent() {
+        let { leftOnPress } = this.props;
+        if (Object.prototype.toString.call(leftOnPress) === '[object Undefined]') {
             Actions.pop();
         } else {
             leftOnPress();
         }
     }
 
-    // 左边组件
+    /** 处理右边菜单点击事件 */
+    _onRightEvent() {
+        let { rightOnPress } = this.props;
+        if (Object.prototype.toString.call(rightOnPress) === '[object Undefined]') {
+            return false;
+        } else {
+            rightOnPress();
+        }
+    }
+
+    /** 左边组件 */
     _renderLeft() {
-        let {leftComponent} = this.props;
+        let {leftComponent, leftStyle} = this.props;
+        let type = Object.prototype.toString.call(leftComponent);
         if (leftComponent === false) {
             return false;
+        } else if (type === '[object String]') {
+            return (
+                <TouchableOpacity
+                    style={styles.backBtnBox}
+                    onPress={this._onLeftEvent.bind(this)}>
+                    <Text numberOfLines={1} style={leftStyle || styles.leftTextDefaultStyle}>{leftComponent}</Text>
+                </TouchableOpacity>
+            );
+        } else if (type === '[object Object]') {
+            return leftComponent;
         }
 
         return (
             <TouchableOpacity
                 style={styles.backBtnBox}
-                onPress={this._renderLeftEvent.bind(this)}>
-                <Icon name="angle-left" size={30} style={{color: '#fff'}}/>
+                onPress={this._onLeftEvent.bind(this)}>
+                <Icon name="angle-left" size={30} style={{color: '#fff', marginLeft:8}}/>
             </TouchableOpacity>
         );
     }
 
-    // 中间组件
+    /** 右边组件 */
+    _renderRight() {
+        let {rightComponent, rightStyle} = this.props;
+        let type = Object.prototype.toString.call(rightComponent);
+        if (type === '[object Object]') {
+            return rightComponent;
+        } else if (type === '[object String]') {
+            return (
+                <TouchableOpacity
+                    style={styles.rightBtnBox}
+                    onPress={this._onRightEvent.bind(this)}>
+                    <Text numberOfLines={1} style={rightStyle || styles.rightTextDefaultStyle}>{rightComponent}</Text>
+                </TouchableOpacity>
+            );
+        }
+
+        return false;
+    }
+
+    /** 中间组件 */
     _renderCenter() {
         let {centerComponent, isLoading} = this.props;
-        if (typeof centerComponent === 'string') {
+        let type = Object.prototype.toString.call(centerComponent);
+        if (type === '[object Object]') {
+            return centerComponent;
+        } else if (type === '[object String]') {
             let isLoadingComponent = false;
-            // if (isLoading) {
-            //     isLoadingComponent = <Image style={styles.centerLoading}
-            //                                 source={require('../../assets/images/loading/header-loading.gif')}/>;
-            // }
+            if (isLoading) {
+                isLoadingComponent = <ActivityIndicator
+                    color={'#fff'}
+                    animating={true}
+                />;
+            }
 
             return (
                 <View style={styles.centerTextBox}>
@@ -66,30 +106,19 @@ class Header extends Component {
             );
         }
 
-        return centerComponent;
-    }
-
-    // 右边组件
-    _renderRight() {
-        let {rightComponent} = this.props;
-        if (typeof rightComponent === 'string') {
-            return (<Text numberOfLines={1}
-                          style={[styles.rightComponentText, this.props.rightText]}
-                          onPress={this.props.rightClick}>{rightComponent}</Text>);
-        }
-
-        return rightComponent;
+        return false;
     }
 
     render() {
         return (
             <View style={styles.container}>
+                {/* 设置头部状态栏字体颜色 */}
                 <StatusBar barStyle={'light-content'} translucent={true} backgroundColor={'transparent'}/>
 
                 <View style={styles.headerBox}>
                     <View style={[styles.headerItem, styles.leftHeader]}>{this._renderLeft()}</View>
                     <View style={[styles.headerItem, styles.centerHeader]}>{this._renderCenter()}</View>
-                    <View style={[styles.headerItem, styles.rightHeader, this.props.right]}>{this._renderRight()}</View>
+                    <View style={[styles.headerItem, styles.rightHeader]}>{this._renderRight()}</View>
                 </View>
             </View>
         );
@@ -117,20 +146,21 @@ let styles = StyleSheet.create({
     },
     centerHeader: {
         justifyContent: 'center',
-        maxWidth: '50%',
-        // overflow: 'hidden'
+        maxWidth: '50%'
     },
     rightHeader: {
-        width: 60,
-        alignItems: 'flex-end'
+        width: 60
     },
     rightComponentText: {
         color: '#fff',
         fontSize: 16,
-        fontWeight: 'bold',
-        marginRight: 8
+        fontWeight: 'bold'
     },
-    backBtnBox: {},
+    backBtnBox: {
+        flex:1,
+        width:'100%',
+        justifyContent: 'center'
+    },
 
     // 中部文字
     centerTextBox: {
@@ -148,6 +178,22 @@ let styles = StyleSheet.create({
         marginLeft: 5,
         fontWeight: 'bold'
     },
+    leftTextDefaultStyle: {
+        color: '#fff',
+        fontSize:16,
+        marginLeft:8
+    },
+    rightTextDefaultStyle: {
+        color: '#fff',
+        fontSize:16,
+        marginRight:8
+    },
+    rightBtnBox: {
+        width:'100%',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+    }
 });
 
 

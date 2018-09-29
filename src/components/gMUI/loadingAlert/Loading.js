@@ -47,8 +47,7 @@ export default class Loading extends Component {
                             style={styles.loadingIcon}
                             color={'#fff'}
                             animating={true}
-                            size="large"
-                        />
+                            size="large"/>
                         <View class={styles.loadTextBox}>
                             <Text style={styles.loadText}>{this.state.text}</Text>
                         </View>

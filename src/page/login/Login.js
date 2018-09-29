@@ -16,7 +16,6 @@ import {
 import styles from './Style';
 
 import { LoadingAlert, Header, GMessageBar } from '../../components/gMUI/index';
-
 export default class Login extends Component {
 
     componentDidMount() { }
@@ -24,7 +23,9 @@ export default class Login extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Header centerComponent={'ddd'} />
+                <Header
+                    rightComponent={'卡'}
+                    centerComponent={'ddd'} />
 
                 <Text>sdfsdfsdf</Text>
 
