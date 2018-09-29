@@ -1,27 +1,32 @@
 {
-	"name": "ReactNativeSeed",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"react": "16.0.0",
-		"react-native": "0.50.4",
-		"react-native-router-flux": "^4.0.0-beta.24",
-		"react-native-storage": "^0.2.2",
-		"react-redux": "^5.0.6",
-		"redux": "^3.7.2",
-		"redux-thunk": "^2.2.0"
-	},
-	"devDependencies": {
-		"babel-jest": "21.2.0",
-		"babel-preset-react-native": "4.0.0",
-		"jest": "21.2.1",
-		"react-test-renderer": "16.0.0"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "reactNativeSeed",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "build_android_dev": "react-native bundle --entry-file index.js --platform android --dev true --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res/",
+    "build_ios_dev": "react-native bundle --entry-file index.js --platform ios --dev true --bundle-output ./ios/bundle/index.ios.jsbundle --assets-dest ./ios/bundle",
+    "build_android": "react-native bundle --entry-file index.js --platform android --dev false  --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res/",
+    "build_ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ./ios/bundle/index.ios.jsbundle --assets-dest ./ios/bundle",
+    "test": "jest"
+  },
+  "dependencies": {
+    "js-md5": "^0.7.3",
+    "lodash": "^4.17.11",
+    "react": "16.4.1",
+    "react-native": "0.56.0",
+    "react-native-message-bar": "^2.0.10",
+    "react-native-router-flux": "^4.0.4",
+    "react-native-sqlite-storage": "^3.3.6",
+    "react-native-vector-icons": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-jest": "23.6.0",
+    "babel-preset-react-native": "^5",
+    "jest": "23.6.0",
+    "react-test-renderer": "16.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
 }

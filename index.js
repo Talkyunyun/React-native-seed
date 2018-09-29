@@ -1,14 +1,17 @@
 /**
  * 项目入口文件
- * @author Gene
+ *
+ * @author  : Gene Yang <talkyunyun@126.com>
+ * @date    : 2017/11/30
+ * @version : v1.0.0
+ * @link    : https://github.com/Talkyunyun
  */
 
-import React, { Component } from 'react';
-import {
-    AppRegistry,
-} from 'react-native';
+import { AppRegistry } from 'react-native';
+import Root from './src/container/Default';
+import {name as appName} from './app.json';
 
-import Root from './src/Root';
+// 全局关闭警告弹窗提示
+console.disableYellowBox = true;
 
-
-AppRegistry.registerComponent('ReactNativeSeed', () => Root);
+AppRegistry.registerComponent(appName, () => Root);
